@@ -56,10 +56,6 @@
 			overflow-x: hidden;
 		}
 
-		.container-fluid {
-			padding: 0px !important;
-		}
-
 		
 	</style>
 
@@ -205,28 +201,24 @@
 
 	<div id="loginBox" class="container-fluid card">
 		<div class="row-fluid">
-			<div id="loginPanel" class="col-xs-12">
-				<div class="row-fluid">
-					<div class="col-xs-4">
-						User ID:
-					</div>
-					<div class="col-xs-8">
-						<input class="loginBox" type="text" id="uid" />
-					</div>
-				</div>
-				<div class="row-fluid">
-					<div class="col-xs-4">
-						Password:
-					</div>
-					<div class="col-xs-8">
-						<input class="loginBox" type="password" id="pass" />
-					</div>
-				</div>
-				<div class="row-fluid">
-					<div class="col-xs-4 col-xs-offset-8">
-						<a onclick="LogOn($('#uid').val(), $('#pass').val())">Log On</a>
-					</div>
-				</div>
+			<div class="col-xs-4">
+				User ID:
+			</div>
+			<div class="col-xs-8">
+				<input class="loginBox" type="text" id="uid" />
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="col-xs-4">
+				Password:
+			</div>
+			<div class="col-xs-8">
+				<input class="loginBox" type="password" id="pass" />
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="col-xs-4 col-xs-offset-8">
+				<a onclick="LogOn($('#uid').val(), $('#pass').val())">Log On</a>
 			</div>
 		</div>
 	</div>
