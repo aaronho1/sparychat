@@ -169,7 +169,8 @@
 				$("#chatInput").removeClass("chatInputUnfocused");
 				$("#chatInput").addClass("chatInputFocused");
 				$("#chatBox").removeClass("sizeOuterBoxNotTyping");
-				$("#chatBox").addClass("sizeOuterBoxTyping");
+				//$("#chatBox").addClass("sizeOuterBoxTyping");
+				$("#chatBox").css('height', (window.innerHeight - 120) + "px");
 				scrollChat();
 			});
 
@@ -177,7 +178,8 @@
 				//alert('out');
 				$("#chatInput").addClass("chatInputUnfocused");
 				$("#chatInput").removeClass("chatInputFocused");
-				$("#chatBox").addClass("sizeOuterBoxNotTyping");
+				//$("#chatBox").addClass("sizeOuterBoxNotTyping");
+				$("#chatBox").css('height', (window.innerHeight - 85) + "px");
 				$("#chatBox").removeClass("sizeOuterBoxTyping");
 				scrollChat();
 			});
