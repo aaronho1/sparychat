@@ -179,13 +179,16 @@
 				$("#chatInput").removeClass("chatInputUnfocused");
 				$("#chatInput").addClass("chatInputFocused");
 				
-				$("html").removeClass("noBoard");
-				$("html").addClass("board");
+				
 				//$("body").removeClass("noBoard");
 				//$("body").addClass("board");
 				//setTimeout(function () { $("#chatBox").css('height', (window.innerHeight - 120) + "px"); }, 50);
 				txtFocus = true;
-				setTimeout(function () { $('body').scrollTop(0); }, 1000);
+				setTimeout(function () {
+					$("html").removeClass("noBoard");
+					$("html").addClass("board");
+					$('body').scrollTop(0);
+				}, 500);
 				scrollChat();
 				
 			});
