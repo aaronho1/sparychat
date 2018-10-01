@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="sparkychatmobile.html" />
+    <Content Include="index.html" />
     <Content Include="sparkychatservices.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
