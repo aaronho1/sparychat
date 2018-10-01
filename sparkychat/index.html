@@ -11,7 +11,7 @@
 
 	<style>
 		html, body {
-			height: 100%;
+			height: 100vh;
 			overflow: hidden
 		}
 
@@ -36,7 +36,7 @@
 			position: absolute;
 			bottom: 0px;
 			text-align: center;
-			width:100%;
+			width:100vw;
 			height: 60px;
 		}
 
@@ -45,10 +45,15 @@
 			position: absolute;
 			bottom: 0px;
 			text-align: center;
-			width: 100%;
+			width: 100vw;
 			height: 25px;
 		}
 
+		.card {
+			position: absolute;
+			/*height: 100vh;*/
+			width: 100vw;
+		}
 	</style>
 
 	<script>
@@ -56,8 +61,8 @@
 		var checkMessagesTimer;
 
 		function showChat() {
-			$('#loginRow').hide();
-			$('#chatRow').css('visibility', 'visible');
+			$('#loginBox').hide();
+			$('#chatBox').css('visibility', 'visible');
 			$('#chatInput').css('visibility', 'visible');
 		}
 
@@ -166,8 +171,8 @@
 				//alert('in');
 				$("#chatInput").removeClass("chatInputUnfocused");
 				$("#chatInput").addClass("chatInputFocused");
-				$("#outerBox").removeClass("sizeOuterBoxNotTyping");
-				$("#outerBox").addClass("sizeOuterBoxTyping");
+				$("#chatBox").removeClass("sizeOuterBoxNotTyping");
+				$("#chatBox").addClass("sizeOuterBoxTyping");
 				scrollChat();
 			});
 
@@ -175,8 +180,8 @@
 				//alert('out');
 				$("#chatInput").addClass("chatInputUnfocused");
 				$("#chatInput").removeClass("chatInputFocused");
-				$("#outerBox").addClass("sizeOuterBoxNotTyping");
-				$("#outerBox").removeClass("sizeOuterBoxTyping");
+				$("#chatBox").addClass("sizeOuterBoxNotTyping");
+				$("#chatBox").removeClass("sizeOuterBoxTyping");
 				scrollChat();
 			});
 
@@ -191,8 +196,8 @@
 </head>
 <body>
 
-	<div id="outerBox" class="container-fluid sizeOuterBoxNotTyping">
-		<div class="row" id="loginRow">
+	<div id="loginBox" class="container-fluid card">
+		<div class="row">
 			<div id="loginPanel" class="col-xs-6 col-xs-offset-3">
 				<div class="row">
 					<div class="col-xs-4">
@@ -217,7 +222,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="row fillHeight" id="chatRow" style="visibility:hidden;">
+	</div>
+
+
+
+
+	<div id="chatBox" class="container-fluid sizeOuterBoxNotTyping card" style="visibility:hidden;">
+		<div class="row fillHeight">
 			<div class="col-xs-12 fillHeight">
 				<div class="row fillHeight">
 					<div class="col-xs-8 fillHeight">
@@ -225,8 +236,8 @@
 							<div id="chatPanel" class="panel-body fillHeight" style="overflow-y: scroll;"></div>
 						</div>
 					</div>
-					<div class="col-xs-4">
-						<div class="panel panel-default">
+					<div class="col-xs-4 fillHeight">
+						<div class="panel panel-default fillHeight">
 							<div class="panel-heading">Chatting</div>
 							<div class="panel-body">names here</div>
 						</div>
@@ -236,7 +247,7 @@
 		</div>
 	</div>
 	<div id="chatInput" class="chatInputUnfocused" style="overflow:hidden; visibility:hidden;">
-			<textarea id="chatText" style="width:100%; height:100%; overflow:hidden" placeholder="Type your message here..."></textarea>
+		<textarea id="chatText" style="width:100%; height:100%; overflow:hidden" placeholder="Type your message here..."></textarea>
 	</div>
 </body>
 </html>
