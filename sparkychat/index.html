@@ -162,8 +162,11 @@
 		}
 
 		var txtFocus = false;
-
+		var innerHeight = 0;
 		jQuery(function () {
+
+			innerHeight = $("html").innerHeight();
+			alert(innerHeight);
 
 			$("#chatText").focus(function () {
 				//alert('in');
@@ -177,7 +180,12 @@
 				txtFocus = true;
 				*/
 				scrollChat();
-				
+				innerHeight = $("html").innerHeight();
+				alert(innerHeight);
+				setTimeout(function () {
+					innerHeight = $("html").innerHeight();
+					alert(innerHeight);
+				}, 1000);
 			});
 
 			$("#chatText").focusout(function () {
