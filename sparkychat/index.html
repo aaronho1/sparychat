@@ -162,6 +162,8 @@
 			}
 		}
 
+		var txtFocus = false;
+
 		jQuery(function () {
 
 			$("#chatText").focus(function () {
@@ -169,8 +171,9 @@
 				$("#chatInput").removeClass("chatInputUnfocused");
 				$("#chatInput").addClass("chatInputFocused");
 				$("#chatBox").removeClass("sizeOuterBoxNotTyping");
-				//$("#chatBox").addClass("sizeOuterBoxTyping");
-				$("#chatBox").css('height', (window.innerHeight - 120) + "px");
+				$("#chatBox").addClass("sizeOuterBoxTyping");
+				//setTimeout(function () { $("#chatBox").css('height', (window.innerHeight - 120) + "px"); }, 50);
+				txtFocus = true;
 				scrollChat();
 			});
 
@@ -181,8 +184,16 @@
 				//$("#chatBox").addClass("sizeOuterBoxNotTyping");
 				$("#chatBox").css('height', (window.innerHeight - 85) + "px");
 				$("#chatBox").removeClass("sizeOuterBoxTyping");
+				txtFocus = false;
 				scrollChat();
 			});
+
+			$("#window").resize(function () {
+				if (txtFocus) {
+					$("#chatBox").css('height', (window.innerHeight - 120) + "px");
+				}
+			});
+
 
 			$("#chatText").on("keypress", function (e) {
 				if (e.keyCode == 13) {
