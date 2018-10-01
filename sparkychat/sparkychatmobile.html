@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			overflow: hidden
+		}
+
+		.fillHeight {
+			height: 100%
+		}
+
+		.sizeOuterBoxTyping {
+			height: calc(100% - 60px);
+		}
+
+		.sizeOuterBoxNotTyping {
+			height: calc(100% - 25px);
+		}
+		
+		.loginBox {
+			width: 150px;
+		}
+
+		.chatInputFocused {
+			display: block;
+			position: absolute;
+			bottom: 0px;
+			text-align: center;
+			width:100%;
+			height: 60px;
+		}
+
+		.chatInputUnfocused {
+			display: block;
+			position: absolute;
+			bottom: 0px;
+			text-align: center;
+			width: 100%;
+			height: 25px;
+		}
+
+	</style>
+
+	<script>
+		var checkMessagesFlag = false;
+		var checkMessagesTimer;
+
+		function showChat() {
+			$('#loginRow').hide();
+			$('#chatRow').css('visibility', 'visible');
+			$('#chatInput').css('visibility', 'visible');
+		}
+
+		function scrollChat() {
+			$("#chatPanel").scrollTop($("#chatPanel").prop("scrollHeight"));
+		}
+
+		function LogOn(userId, pass) {
+			var webMethod = "sparkychatservices.asmx/LogOn";
+			var parameters = "{\"uid\":\"" + encodeURI(userId) + "\",\"pass\":\"" + encodeURI(pass) + "\"}";
+
+			$.ajax({
+				type: "POST",
+				url: webMethod,
+				data: parameters,
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				success: function (msg) {
+					if (msg.d) {
+						showChat();
+						checkMessagesFlag = true;
+						CheckMessages();
+					}
+					else {
+						alert("logon failed");
+					}
+				},
+				error: function (e) {
+					alert("boo...");
+				}
+			});
+		}
+
+		function SendMessage(message) {
+			var webMethod = "sparkychatservices.asmx/SendMessage";
+			var parameters = "{\"message\":\"" + encodeURI(message) + "\"}";
+
+			$.ajax({
+				type: "POST",
+				url: webMethod,
+				data: parameters,
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				success: function (msg) {
+					if (msg.d) {
+						$('#chatText').val('');
+						checkMessagesFlag = false;
+						clearTimeout(checkMessagesTimer);
+						CheckMessages(true);
+					}
+					else {
+						alert("send failed");
+					}
+				},
+				error: function (e) {
+					alert("boo...");
+				}
+			});
+		}
+
+		function CheckMessages(resetFlag) {
+			resetFlag = resetFlag || false;
+			if (resetFlag) {
+				checkMessagesFlag = true;
+			}
+			if (checkMessagesFlag) {
+				//alert("checking");
+				var webMethod = "sparkychatservices.asmx/GetMessages";
+				//var parameters = "{}";
+
+				$.ajax({
+					type: "POST",
+					url: webMethod,
+					//data: parameters,
+					contentType: "application/json; charset=utf-8",
+					dataType: "json",
+					success: function (msg) {
+						if (msg.d.length > 0) {
+							for (var i = 0; i < msg.d.length; i++) {
+								$("#chatPanel").append(
+									"<div class='msg' id='msg" + msg.d[i].id + "'>" +
+									"<span class='nameTag'>" +
+									msg.d[i].userName +
+									":</span> <span class='msgTag'>" +
+									msg.d[i].message +
+									"</span></div>"
+								);
+							}
+						}
+
+						scrollChat();
+						if (checkMessagesFlag) {
+							checkMessagesTimer=setTimeout(function () { CheckMessages() }, 5000);
+						}
+					},
+					error: function (e) {
+						alert("boo...");
+					}
+				});
+			}
+		}
+
+		jQuery(function () {
+
+			$("#chatText").focus(function () {
+				//alert('in');
+				$("#chatInput").removeClass("chatInputUnfocused");
+				$("#chatInput").addClass("chatInputFocused");
+				$("#outerBox").removeClass("sizeOuterBoxNotTyping");
+				$("#outerBox").addClass("sizeOuterBoxTyping");
+				scrollChat();
+			});
+
+			$("#chatText").focusout(function () {
+				//alert('out');
+				$("#chatInput").addClass("chatInputUnfocused");
+				$("#chatInput").removeClass("chatInputFocused");
+				$("#outerBox").addClass("sizeOuterBoxNotTyping");
+				$("#outerBox").removeClass("sizeOuterBoxTyping");
+				scrollChat();
+			});
+
+			$("#chatText").on("keypress", function (e) {
+				if (e.keyCode == 13) {
+					SendMessage($("#chatText").val());
+				}
+			});
+		});
+	</script>
+
+</head>
+<body>
+
+	<div id="outerBox" class="container-fluid sizeOuterBoxNotTyping">
+		<div class="row" id="loginRow">
+			<div id="loginPanel" class="col-xs-4 col-xs-offset-4">
+				<div class="row">
+					<div class="col-xs-4">
+						User ID:
+					</div>
+					<div class="col-xs-8">
+						<input class="loginBox" type="text" id="uid" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4">
+						Password:
+					</div>
+					<div class="col-xs-8">
+						<input class="loginBox" type="password" id="pass" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 col-xs-offset-8">
+						<a onclick="LogOn($('#uid').val(), $('#pass').val())">Log On</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row fillHeight" id="chatRow" style="visibility:hidden;">
+			<div class="col-xs-12 fillHeight">
+				<div class="row fillHeight">
+					<div class="col-xs-8 fillHeight">
+						<div class="panel panel-default fillHeight">
+							<div id="chatPanel" class="panel-body fillHeight" style="overflow-y: scroll;"></div>
+						</div>
+					</div>
+					<div class="col-xs-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">Chatting</div>
+							<div class="panel-body">names here</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="chatInput" class="chatInputUnfocused" style="overflow:hidden; visibility:hidden;">
+			<textarea id="chatText" style="width:100%; height:100%; overflow:hidden" placeholder="Type your message here..."></textarea>
+	</div>
+</body>
+</html>
