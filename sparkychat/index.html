@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="noBoard">
 <head>
 	<title>SparkyChat!</title>
 	<meta charset="utf-8">
@@ -11,9 +11,16 @@
 
 	<style>
 		html, body {
-			height: 100%;
 			display: flex;
 			flex-direction: column;
+		}
+		
+		.noBoard {
+			height: 100%;
+		}
+
+		.board {
+			height: 70%;
 		}
 
 		.fillHeight {
@@ -164,38 +171,33 @@
 		var txtFocus = false;
 		var innerHeight = 0;
 		jQuery(function () {
-
-			innerHeight = $("html").innerHeight();
-			alert(innerHeight);
+			
 
 			$("#chatText").focus(function () {
 				//alert('in');
 				
 				$("#chatInput").removeClass("chatInputUnfocused");
 				$("#chatInput").addClass("chatInputFocused");
-				/*
-				$("#chatBox").removeClass("sizeOuterBoxNotTyping");
-				$("#chatBox").addClass("sizeOuterBoxTyping");
+				
+				$("html").removeClass("noBoard");
+				$("html").addClass("board");
+				//$("body").removeClass("noBoard");
+				//$("body").addClass("board");
 				//setTimeout(function () { $("#chatBox").css('height', (window.innerHeight - 120) + "px"); }, 50);
 				txtFocus = true;
-				*/
+				
 				scrollChat();
-				setTimeout(function () {
-					innerHeight = $("html").innerHeight();
-					alert(innerHeight);
-				}, 1000);
+				
 			});
 
 			$("#chatText").focusout(function () {
 				//alert('out');
 				$("#chatInput").addClass("chatInputUnfocused");
 				$("#chatInput").removeClass("chatInputFocused");
-				/*
-				$("#chatBox").addClass("sizeOuterBoxNotTyping");
-				$("#chatBox").css('height', (window.innerHeight - 85) + "px");
-				$("#chatBox").removeClass("sizeOuterBoxTyping");
-				txtFocus = false;
-				*/
+				$("html").removeClass("board");
+				$("html").addClass("noBoard");
+				//$("body").removeClass("board");
+				//$("body").addClass("noBoard");
 				scrollChat();
 				
 			});
@@ -218,7 +220,7 @@
 	</script>
 
 </head>
-<body>
+<body class="noBoard">
 
 	<nav class="navbar navbar-inverse" style="display:flex; flex-direction:column;">
 		<div class="container-fluid">
