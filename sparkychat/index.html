@@ -12,11 +12,12 @@
 	<style>
 		html, body {
 			height: 100vh;
-			overflow: hidden
+			width: 100vw;
+			overflow: hidden;
 		}
 
 		.fillHeight {
-			height: 100%
+			height: 100%;
 		}
 
 		.sizeOuterBoxTyping {
@@ -36,7 +37,7 @@
 			position: absolute;
 			bottom: 0px;
 			text-align: center;
-			width:80vw;
+			width:100vw;
 			height: 60px;
 		}
 
@@ -45,7 +46,7 @@
 			position: absolute;
 			bottom: 0px;
 			text-align: center;
-			width: 80vw;
+			width: 100vw;
 			height: 25px;
 		}
 
@@ -54,6 +55,8 @@
 			/*height: 100vh;*/
 			width: 100vw;
 		}
+
+		
 	</style>
 
 	<script>
@@ -197,9 +200,9 @@
 <body>
 
 	<div id="loginBox" class="container-fluid card">
-		<div class="row">
+		<div class="row-fluid">
 			<div id="loginPanel" class="col-xs-12">
-				<div class="row">
+				<div class="row-fluid">
 					<div class="col-xs-4">
 						User ID:
 					</div>
@@ -207,7 +210,7 @@
 						<input class="loginBox" type="text" id="uid" />
 					</div>
 				</div>
-				<div class="row">
+				<div class="row-fluid">
 					<div class="col-xs-4">
 						Password:
 					</div>
@@ -215,7 +218,7 @@
 						<input class="loginBox" type="password" id="pass" />
 					</div>
 				</div>
-				<div class="row">
+				<div class="row-fluid">
 					<div class="col-xs-4 col-xs-offset-8">
 						<a onclick="LogOn($('#uid').val(), $('#pass').val())">Log On</a>
 					</div>
