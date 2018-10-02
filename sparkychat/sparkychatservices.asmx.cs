@@ -90,6 +90,7 @@ namespace sparkychat
 				int accountID = Convert.ToInt32(sqlCommand.ExecuteScalar());
 				success = true;
 				Session["id"] = accountID;
+				Session["lastmessageid"] = -1;
 			}
 			catch (Exception e) { }
 			sqlConnection.Close();

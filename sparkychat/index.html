@@ -89,10 +89,8 @@
 			}
 		}
 
-		function showChat() {
-			$('#loginBox').hide();
-			$('#chatBox').css('visibility', 'visible');
-			$('#chatInput').css('visibility', 'visible');
+		function clearChat() {
+			$("#chatPanel").html("");
 		}
 
 		function scrollChat() {
@@ -174,9 +172,10 @@
 					dataType: "json",
 					success: function (msg) {
 						if (msg.d) {
+							clearChat();
 							showCard('chatBox');
 							checkMessagesFlag = true;
-							CheckMessages();
+							CheckMessages(true);
 							clearValidateNewAccount();
 						}
 						else {
@@ -202,6 +201,7 @@
 				dataType: "json",
 				success: function (msg) {
 					if (msg.d) {
+						clearChat();
 						showCard('chatBox');
 						checkMessagesFlag = true;
 						CheckMessages();
@@ -217,8 +217,8 @@
 		}
 
 		function LogOff() {
-			var webMethod = "sparkychatservices.asmx/LogOff";
 
+			var webMethod = "sparkychatservices.asmx/LogOff";
 			$.ajax({
 				type: "POST",
 				url: webMethod,
@@ -227,6 +227,7 @@
 				success: function (msg) {
 					if (msg.d) {
 						showCard('loginBox');
+						clearChat();
 					}
 					else {
 					}
