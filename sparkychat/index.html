@@ -184,11 +184,14 @@
 				//$("body").addClass("board");
 				//setTimeout(function () { $("#chatBox").css('height', (window.innerHeight - 120) + "px"); }, 50);
 				txtFocus = true;
-				setTimeout(function () {
-					$("html").removeClass("noBoard");
-					$("html").addClass("board");
-					$('body').scrollTop(0);
-				}, 500);
+				if (navigator.userAgent.match(/(iPod|iPhone|iPad)/i)) {
+					setTimeout(function () {
+						$("html").removeClass("noBoard");
+						$("html").addClass("board");
+						$('body').scrollTop(0);
+						scrollChat();
+					}, 300);
+				}
 				scrollChat();
 				
 			});
