@@ -408,9 +408,18 @@
 
 			});
 
-			$("#sendButton").on("touchstart", function () {
-				SendMessage($('#chatInput').val());
-			});
+			if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+				$("#sendButton").on("touchstart", function () {
+					SendMessage($('#chatInput').val());
+				});
+			}
+			else {
+				$("#sendButton").on("click", function () {
+					SendMessage($('#chatInput').val());
+				});
+			}
+
+			
 
 			showPanel('logonPanel');
 		});

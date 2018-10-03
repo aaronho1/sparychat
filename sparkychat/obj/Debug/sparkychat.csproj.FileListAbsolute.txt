@@ -7,3 +7,4 @@ C:\Users\jrnicho\source\repos\sparkychat\sparkychat\obj\Debug\sparkychat.csproj.
 C:\Users\jrnicho\source\repos\sparkychat\sparkychat\obj\Debug\sparkychat.csproj.CopyComplete
 C:\Users\jrnicho\source\repos\sparkychat\sparkychat\obj\Debug\sparkychat.dll
 C:\Users\jrnicho\source\repos\sparkychat\sparkychat\obj\Debug\sparkychat.pdb
+C:\Users\jrnicho\source\repos\sparkychat\sparkychat\obj\Debug\sparkychat.csprojAssemblyReference.cache
