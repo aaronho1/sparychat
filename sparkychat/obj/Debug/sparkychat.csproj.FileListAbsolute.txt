@@ -3,7 +3,6 @@ C:\Users\jrnicho\source\repos\sparkychat\sparkychat\bin\sparkychat.dll
 C:\Users\jrnicho\source\repos\sparkychat\sparkychat\bin\sparkychat.pdb
 C:\Users\jrnicho\source\repos\sparkychat\sparkychat\bin\Newtonsoft.Json.dll
 C:\Users\jrnicho\source\repos\sparkychat\sparkychat\bin\Newtonsoft.Json.xml
-C:\Users\jrnicho\source\repos\sparkychat\sparkychat\obj\Debug\sparkychat.csprojAssemblyReference.cache
 C:\Users\jrnicho\source\repos\sparkychat\sparkychat\obj\Debug\sparkychat.csproj.CoreCompileInputs.cache
 C:\Users\jrnicho\source\repos\sparkychat\sparkychat\obj\Debug\sparkychat.csproj.CopyComplete
 C:\Users\jrnicho\source\repos\sparkychat\sparkychat\obj\Debug\sparkychat.dll

@@ -408,6 +408,10 @@
 
 			});
 
+			$("#sendButton").on("touchstart", function () {
+				SendMessage($('#chatInput').val());
+			});
+
 			showPanel('logonPanel');
 		});
 
@@ -453,7 +457,7 @@
 					<textarea id="chatInput" class="chatInput" placeholder="Type your message here..."></textarea>
 				</div>
 				<div>
-					<img class="sendButton" onClick ="SendMessage($('#chatInput').val());" src="send.svg">
+					<img id="sendButton" class="sendButton" src="send.svg">
 				</div>
 			</div>
 		</div>
