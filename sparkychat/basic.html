@@ -127,6 +127,8 @@
 			padding-left: 20px;
 			padding-right: 20px;
 			padding-bottom: 2px;
+			display:flex;
+			flex-direction:row;
 		}
 
 		.chatInput {
@@ -441,7 +443,12 @@
 			<div id="messagesPanel" class="messagesPanel">
 			</div>
 			<div id="chatInputPanel" class="chatInputPanel">
-				<textarea id="chatInput" class="chatInput" placeholder="Type your message here..."></textarea>
+				<div style="flex: 1">
+					<textarea id="chatInput" class="chatInput" placeholder="Type your message here..."></textarea>
+				</div>
+				<div>
+					<button onclick="SendMessage($('#chatInput').val());" style="margin-top:7px;"><img style="height:20px; width:20px;" src="send.svg" /></button>
+				</div>
 			</div>
 		</div>
 
