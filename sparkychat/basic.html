@@ -151,6 +151,12 @@
 		.board {
 			height: 50%;
 		}
+
+		.sendButton {
+			margin-top:7px; 
+			width:20px; 
+			height:20px;
+		}
 	</style>
 
 	<script type="text/javascript">
@@ -447,7 +453,7 @@
 					<textarea id="chatInput" class="chatInput" placeholder="Type your message here..."></textarea>
 				</div>
 				<div>
-					<button onfocus="SendMessage($('#chatInput').val());" style="margin-top:7px;"><img style="height:20px; width:20px;" src="send.svg" /></button>
+					<img class="sendButton" onClick ="SendMessage($('#chatInput').val());" src="send.svg">
 				</div>
 			</div>
 		</div>
