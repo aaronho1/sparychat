@@ -64,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="basic.html" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="sparkychatservices.asmx" />
